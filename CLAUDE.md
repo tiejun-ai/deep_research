@@ -20,6 +20,7 @@ Design principles to preserve:
 - **Parallelism** — subagents run concurrently, and each subagent may issue multiple tool calls in parallel.
 - **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters.
 - **Observable** — log the lead agent's plan, each subagent's searches (queries and sources), and the agents' thought process as the run progresses, so the multi-agent behavior can be followed and debugged.
+- **Shared logic** — factor common behavior (e.g., the agent loop, LLM calls, search/tool handling) into shared classes and functions reused across agents, to reduce code size and duplication.
 
 Output is markdown rendered to a PDF file. The report carries inline citations from the citation pass; to keep things simple, it does not append a full list of web search result URLs.
 
