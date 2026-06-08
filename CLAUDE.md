@@ -18,7 +18,7 @@ The system follows the orchestrator-worker pattern from the article:
 Design principles to preserve:
 - **Prompt-driven coordination** — division of labor, search strategy, and effort budgets live in the prompts, not in hardcoded rules.
 - **Parallelism** — subagents run concurrently, and each subagent may issue multiple tool calls in parallel.
-- **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters.
+- **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters. Expose `MAX_NUM_AGENTS` (default `3`) to cap how many subagents the lead spawns in parallel, and `MAX_AGENT_LOOP_TIMES` (default `3`) to cap each agent's search-loop iterations.
 - **Observable** — log the lead agent's plan, each subagent's searches (queries and sources), and the agents' thought process as the run progresses, so the multi-agent behavior can be followed and debugged.
 - **Shared logic** — factor common behavior (e.g., the agent loop, LLM calls, search/tool handling) into shared classes and functions reused across agents, to reduce code size and duplication.
 
