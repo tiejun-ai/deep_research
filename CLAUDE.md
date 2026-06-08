@@ -34,6 +34,6 @@ Output is markdown (the report plus a list of cited sources with URLs), rendered
 
 ## Code Guidelines
 
-- Simple and concise; add key comments to explain non-obvious logic.
+- Keep code as simple, concise, and clear as possible; add key comments to explain non-obvious logic.
 - Keep text cells in notebooks to explain reasoning between code cells.
 - Keep subagent count and iteration/effort budgets configurable so the multi-agent behavior can be tuned.
