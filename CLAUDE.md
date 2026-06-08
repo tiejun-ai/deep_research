@@ -20,7 +20,7 @@ Design principles to preserve:
 - **Parallelism** — subagents run concurrently, and each subagent may issue multiple tool calls in parallel.
 - **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters.
 
-Output is markdown (the report plus a list of cited sources with URLs), converted to HTML for Jupyter display.
+Output is markdown (the report plus a list of cited sources with URLs), rendered to a PDF file.
 
 ## Tech Stack
 
