@@ -20,7 +20,7 @@ Design principles to preserve:
 - **Parallelism** — subagents run concurrently, and each subagent may issue multiple tool calls in parallel.
 - **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters.
 
-Output is markdown (the report plus a list of cited sources with URLs), rendered to a PDF file.
+Output is markdown rendered to a PDF file. The report carries inline citations from the citation pass; to keep things simple, it does not append a full list of web search result URLs.
 
 ## Tech Stack
 
