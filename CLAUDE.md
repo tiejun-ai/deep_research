@@ -10,7 +10,7 @@ An open-source implementation of the core architecture described in Anthropic's 
 
 The system follows the orchestrator-worker pattern from the article:
 
-1. **Lead agent (orchestrator)** — plans its approach, decomposes the query into focused subtasks, and spawns multiple subagents in parallel (the article uses 3–5). It persists its plan to memory so context survives a long run, and decides when enough research has been gathered.
+1. **Lead agent (orchestrator)** — plans its approach, decomposes the query into focused subtasks, and spawns multiple subagents in parallel. It persists its plan to memory so context survives a long run, and decides when enough research has been gathered.
 2. **Subagents (workers)** — each is given an objective, an output format, guidance on tools/sources to use, and clear task boundaries. Each runs its own iterative search loop, evaluating tool results and refining its next query, then returns condensed findings to the lead.
 3. **Citation pass** — a dedicated step (CitationAgent) maps the final report's claims back to their sources so all claims are properly attributed.
 4. **Synthesis** — the lead composes the final report from the subagents' findings, with citations attached.
