@@ -4,25 +4,29 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project
 
-A deep research demonstration. Given a user query, the system produces a long-form research report: it plans the research, runs many web searches across sub-questions, reads and synthesizes the findings, and writes a structured report with inline citations to the sources used.
+An open-source implementation of the core architecture described in Anthropic's "How we built our multi-agent research system" (https://www.anthropic.com/engineering/multi-agent-research-system). The goal is to showcase the canonical multi-agent (orchestrator-worker) pattern: given a research query, a lead agent coordinates several subagents that research in parallel, and the system produces a synthesized report with citations.
 
-This is the deeper-research successor to the single-shot `ai_websearch` project: instead of one answer from a few searches, it decomposes the query, gathers evidence over multiple rounds, and composes a multi-section report.
+## Architecture (Orchestrator-Worker Multi-Agent)
 
-## Architecture (Plan, Agent Loop, Tool Use, Report Synthesis)
+The system follows the orchestrator-worker pattern from the article:
 
-The pipeline runs in stages:
+1. **Lead agent (orchestrator)** — plans its approach, decomposes the query into focused subtasks, and spawns multiple subagents in parallel (the article uses 3–5). It persists its plan to memory so context survives a long run, and decides when enough research has been gathered.
+2. **Subagents (workers)** — each is given an objective, an output format, guidance on tools/sources to use, and clear task boundaries. Each runs its own iterative search loop, evaluating tool results and refining its next query, then returns condensed findings to the lead.
+3. **Citation pass** — a dedicated step (CitationAgent) maps the final report's claims back to their sources so all claims are properly attributed.
+4. **Synthesis** — the lead composes the final report from the subagents' findings, with citations attached.
 
-1. **Plan** — prompt the LLM to decompose the query into a set of focused sub-questions / search topics.
-2. **Research (agent loop with tool use)** — for each sub-question, iteratively prompt the LLM with a web-search tool. The LLM issues searches, the system executes them and feeds results back into context, repeating until the LLM has enough to answer. A configurable parameter caps the number of LLM calls / iterations per sub-question.
-3. **Synthesize** — collect findings across all sub-questions and prompt the LLM to write the final report, with inline citations referencing the collected sources.
+Design principles to preserve:
+- **Prompt-driven coordination** — division of labor, search strategy, and effort budgets live in the prompts, not in hardcoded rules.
+- **Parallelism** — subagents run concurrently, and each subagent may issue multiple tool calls in parallel.
+- **Tunable** — the number of subagents and per-agent iteration/effort budgets are configurable parameters.
 
-Output is markdown (converted to HTML for Jupyter display), containing the report and a list of cited sources with URLs.
+Output is markdown (the report plus a list of cited sources with URLs), converted to HTML for Jupyter display.
 
 ## Tech Stack
 
 - Language: Python
 - Web search: Tavily Python SDK (`TavilyClient`)
-- LLM: LiteLLM Python SDK (model is a selectable parameter, default to a cheap OpenAI model)
+- LLM: LiteLLM Python SDK (model is a selectable parameter; provider-agnostic). The lead agent and subagents can use different models, but keep model choice model-agnostic via LiteLLM.
 
 ## Code Structure
 
@@ -32,4 +36,4 @@ Output is markdown (converted to HTML for Jupyter display), containing the repor
 
 - Simple and concise; add key comments to explain non-obvious logic.
 - Keep text cells in notebooks to explain reasoning between code cells.
-- Keep iteration/LLM-call counts configurable so deep research depth can be tuned.
+- Keep subagent count and iteration/effort budgets configurable so the multi-agent behavior can be tuned.
