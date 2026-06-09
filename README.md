@@ -1,6 +1,6 @@
 # deep_research
 
-  * Multi-Agent Deep Research: the orchestrator-worker pattern from Anthropic's [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
+  * Multi-Agent Deep Research: An open-source implementation of the core of Anthropic's Deep Research, as described in [How we built our multi-agent research system](https://www.anthropic.com/engineering/multi-agent-research-system)
     1. **Lead agent (orchestrator)** decomposes the query into focused, non-overlapping subtasks
     2. **Subagents (workers)** research those subtasks **in parallel**, each running its own web-search loop (Tavily as a **tool** for the LLM)
     3. **Citation pass** attributes the report's claims back to their sources with inline citations
