@@ -119,6 +119,7 @@ def research(query):
         findings = agent.run(st["objective"])
         return {"objective": st["objective"], "findings": findings, "sources": agent.sources}
 
+    # Fan out: subagents research concurrently in parallel threads.
     with ThreadPoolExecutor(max_workers=MAX_NUM_AGENTS) as ex:
         results = list(ex.map(lambda p: run_subagent(*p), enumerate(subtasks)))
 
