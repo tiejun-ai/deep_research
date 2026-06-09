@@ -13,4 +13,5 @@
 |------|-------------|
 | [deep_research.ipynb](deep_research.ipynb) | Jupyter notebook — [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tiejun-ai/deep_research/blob/main/deep_research.ipynb) |
 | [deep_research.py](deep_research.py) | Python script version |
+| [deep_research_mini.py](deep_research_mini.py) | Minimal single Python file version |
 | [CLAUDE.md](CLAUDE.md) | Claude Code instructions — project context, tech stack, architecture, and code guidelines |
