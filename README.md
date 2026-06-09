@@ -12,6 +12,8 @@
 | File | Description |
 |------|-------------|
 | [deep_research.ipynb](deep_research.ipynb) | Jupyter notebook — [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/tiejun-ai/deep_research/blob/main/deep_research.ipynb) |
+| [deep_research.demo1.ipynb](deep_research.demo1.ipynb) | Demo run with saved output — English query ("Paris travel planning: suggest number of days") |
+| [deep_research.demo2.ipynb](deep_research.demo2.ipynb) | Demo run with saved output — Chinese query ("巴黎旅行攻略 几天合适") |
 | [deep_research.py](deep_research.py) | Python script version |
 | [deep_research_mini.py](deep_research_mini.py) | Minimal single Python file version |
 | [CLAUDE.md](CLAUDE.md) | Claude Code instructions — project context, tech stack, architecture, and code guidelines |
