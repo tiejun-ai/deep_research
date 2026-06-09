@@ -35,13 +35,11 @@ def web_search(query, agent="system"):
         for r in tavily.search(query=query, max_results=4)["results"]
     ]
 
-
 def llm(model, messages, tools=None, response_format=None, max_tokens=2000):
     return litellm.completion(
         model=model, messages=messages, tools=tools,
         response_format=response_format, max_tokens=max_tokens, temperature=0.2,
     ).choices[0].message
-
 
 def _assistant_to_dict(msg):
     d = {"role": "assistant", "content": msg.content or ""}
@@ -52,7 +50,6 @@ def _assistant_to_dict(msg):
             for tc in msg.tool_calls
         ]
     return d
-
 
 class Agent:
     def __init__(self, model, system_prompt, name="agent"):
@@ -80,7 +77,6 @@ class Agent:
         messages.append({"role": "user", "content": "Stop searching and give your final answer now."})
         return llm(self.model, messages).content
 
-
 SUBAGENT_SYSTEM = (
     "You are a research subagent. You are given one focused objective.\n"
     "Use the web_search tool to gather evidence, refining queries until you can answer well.\n"
@@ -107,7 +103,6 @@ CITATION_SYSTEM = (
     "of the available source URLs, formatted as a markdown link like ([example.com](https://example.com/page)).\n"
     "Keep citations inline and minimal. Do NOT append a bibliography. Return the full report markdown."
 )
-
 
 def research(query):
     print(f"[lead] query: {query!r}")
@@ -139,7 +134,6 @@ def research(query):
                [{"role": "system", "content": CITATION_SYSTEM},
                 {"role": "user", "content": f"Report:\n{report}\n\nAvailable source URLs:\n" + "\n".join(sources)}],
                max_tokens=3000).content
-
 
 if __name__ == "__main__":
     print(research("Best practices for prompt engineering?"))
