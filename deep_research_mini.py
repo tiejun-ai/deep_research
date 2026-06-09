@@ -27,7 +27,6 @@ WEB_SEARCH_TOOL = {
     },
 }
 
-
 def web_search(query, agent="system"):
     print(f"[{agent}] search: {query!r}")
     return [
