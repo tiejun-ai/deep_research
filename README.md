@@ -6,6 +6,7 @@
     3. **Citation pass** attributes the report's claims back to their sources with inline citations
     4. **Synthesis**: the lead composes a final markdown report from the subagents' findings
     5. Prompt-driven coordination, with tunable knobs — `MAX_NUM_AGENTS` (default 3) and `MAX_AGENT_LOOP_TIMES` (default 3)
+  * Blog post: [Multi-Agent Deep Research](https://tiejun-ai.github.io/posts/deep_research/)
 
 ## Files
 
